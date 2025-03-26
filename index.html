@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esfera - Calculadora</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #e3f2fd;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            margin: auto;
+        }
+        input, button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #01579b;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Esfera</h2>
+        <label for="raio">Digite o raio:</label>
+        <input type="number" id="raio" placeholder="Ex: 5">
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcular() {
+            const raio = parseFloat(document.getElementById('raio').value);
+            const resultado = document.getElementById('resultado');
+            
+            if (!raio || raio <= 0) {
+                resultado.innerText = 'Insira um raio válido!';
+                resultado.style.color = 'red';
+                return;
+            }
+            
+            const pi = Math.PI;
+            const comprimento = (2 * pi * raio).toFixed(2);
+            const area = (pi * Math.pow(raio, 2)).toFixed(2);
+            const volume = ((4 / 3) * pi * Math.pow(raio, 3)).toFixed(2);
+            
+            resultado.style.color = 'black';
+            resultado.innerHTML = `
+                <strong>Resultados:</strong><br>
+                Comprimento: ${comprimento}<br>
+                Área: ${area}<br>
+                Volume: ${volume}
+            `;
+        }
+    </script>
+</body>
+</html>
